@@ -17,22 +17,31 @@ function App() {
 
   };
 
-  return (<div className="container">
+  const handleDelete = (id) => {
+    var newArr = [...items];
+    newArr.splice(id, 1);
+    console.log(newArr);
+    setitems(newArr);
+  };
 
-    <div className="heading">
-      <h1>To-Do List</h1>
+
+  return (
+    <div className="container">
+
+      <div className="heading">
+        <h1>To-Do List</h1>
+      </div>
+
+      <div className="form">
+        <form onSubmit={handleSubmit}>
+          <input type="text" name='todoItem' />
+          <button type='Submit'><span>Add</span></button>
+        </form>
+      </div>
+
+      <ITEMS propItems={items} checked={handleDelete} />
+
     </div>
-
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <input type="text" name='todoItem' />
-        <button type='Submit'><span>Add</span></button>
-      </form>
-    </div>
-
-    <ITEMS propItems={items} />
-
-  </div>
   );
 };
 
