@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import ITEMS from './components/todoitems';
+import INPUT from './components/INPUT';
 import './App.css';
 
 function App() {
@@ -8,13 +9,11 @@ function App() {
   var [items, setitems] = useState([]);
 
   const handleSubmit = (event) => {
-
     var newVal = event.target.todoItem.value;
     setitems((pervItem) => {
       return [...pervItem, newVal];
     });
     event.preventDefault();
-
   };
 
   const handleDelete = (id) => {
@@ -24,7 +23,6 @@ function App() {
     setitems(newArr);
   };
 
-
   return (
     <div className="container">
 
@@ -32,12 +30,7 @@ function App() {
         <h1>To-Do List</h1>
       </div>
 
-      <div className="form">
-        <form onSubmit={handleSubmit}>
-          <input type="text" name='todoItem' />
-          <button type='Submit'><span>Add</span></button>
-        </form>
-      </div>
+      <INPUT handleSubmit={handleSubmit} />
 
       <ITEMS propItems={items} checked={handleDelete} />
 
